@@ -1,0 +1,4 @@
+
+deploy-mssql:
+  script: "./run-ci-ubuntu-mssql.sh"
+
