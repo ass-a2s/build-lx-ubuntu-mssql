@@ -176,8 +176,16 @@ install_mssql() {
    sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
    sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
    sudo apt-get update
-   sudo apt-get install -y mssql-server
-   sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+   sudo apt-get -y install mssql-server
+   sudo ACCEPT_EULA=Y apt-get -y install mssql-tools unixodbc-dev
+}
+
+#// FUNCTION: install locales
+install_locales() {
+   sudo apt-get update
+   sudo apt-get -y install locales
+   sudo locale-gen en_US.UTF-8
+   sudo update-locale LANG=en_US.UTF-8
 }
 
 #// FUNCTION: start service
@@ -202,6 +210,9 @@ check_hard build: nodirect_open module
 
 install_mssql
 check_hard install: mssql
+
+install_locales
+check_hard install: locales
 
 echo ""
 echo "### ### ### ### ### ### ### ### ### ### ### ### ### ###"
