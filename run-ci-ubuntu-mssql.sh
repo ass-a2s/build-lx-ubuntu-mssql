@@ -107,7 +107,7 @@ fi
 
 #// FUNCTION: set new ubuntu package sources
 set_ubuntu_sources() {
-sudo cat << "UBUNTUSOURCES" > ubuntu_xenial_sources
+cat << "UBUNTUSOURCES" > ubuntu_xenial_sources
 ### ### ### ASS // ### ### ###
 
 deb http://archive.ubuntu.com/ubuntu xenial main
@@ -150,7 +150,7 @@ install_package() {
 
 #// FUNCTION: build nodirect_open module
 build_nodirect_open() {
-sudo cat << "NODIRECT" > nodirect_open.c
+cat << "NODIRECT" > nodirect_open.c
 // nodirect_open.c by mic92
 #define _GNU_SOURCE
 #include <dlfcn.h>
