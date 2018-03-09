@@ -167,15 +167,17 @@ NODIRECT
    sudo cp -fv nodirect_open.c /nodirect_open.c
    sudo gcc -shared -fpic -o /nodirect_open.so /nodirect_open.c -ldl
    echo "/nodirect_open.so" > ld.so.preload
-   sudo cp -fv ld.so.preload /ld.so.preload
+   sudo cp -fv ld.so.preload /etc/ld.so.preload
 }
 
 #// FUNCTION: install mssql
 install_mssql() {
    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
    sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
+   sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
    sudo apt-get update
    sudo apt-get install -y mssql-server
+   sudo ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
 }
 
 #// FUNCTION: start service
